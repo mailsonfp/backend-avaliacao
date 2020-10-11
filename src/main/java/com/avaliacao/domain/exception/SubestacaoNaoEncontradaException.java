@@ -1,15 +1,12 @@
 package com.avaliacao.domain.exception;
 
-public class SubestacaoNaoEncontradaException extends EntidadeNaoEncontradaException {
+public class SubEstacaoNaoEncontradaException extends EntidadeNaoEncontradaException {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public SubestacaoNaoEncontradaException(String mensagem) {
-		super(mensagem);		
-	}
-	
-	public SubestacaoNaoEncontradaException(Integer idSubestacao) {
-		this(String.format("Não foi possível localizar uma subestacao com o código: %d", idSubestacao));
-	}	
+	 public SubEstacaoNaoEncontradaException(String codigoSubEstacao) {
+	        super(String.format("Não foi possível localizar uma SubEstação com o código: %s", codigoSubEstacao));
+	 }
+
 
 }

@@ -1,15 +1,19 @@
 package com.avaliacao.domain.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name="tb_subestacao")
-public class Subestacao {
+public class SubEstacao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,9 @@ public class Subestacao {
 	private BigDecimal latitude;
 	
 	private BigDecimal longitude;
+	
+	@OneToMany(mappedBy = "subEstacao", cascade = CascadeType.ALL)
+	private List<RedeMt> redesMt = new ArrayList<>();
 
 	public Integer getIdSubestacao() {
 		return idSubestacao;
@@ -64,11 +71,19 @@ public class Subestacao {
 		this.longitude = longitude;
 	}
 
+	public List<RedeMt> getRedesMt() {
+		return redesMt;
+	}
+
+	public void setRedesMt(List<RedeMt> redesMt) {
+		this.redesMt = redesMt;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((idSubestacao == null) ? 0 : idSubestacao.hashCode());
 		return result;
 	}
 
@@ -80,15 +95,13 @@ public class Subestacao {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Subestacao other = (Subestacao) obj;
-		if (codigo == null) {
-			if (other.codigo != null)
+		SubEstacao other = (SubEstacao) obj;
+		if (idSubestacao == null) {
+			if (other.idSubestacao != null)
 				return false;
-		} else if (!codigo.equals(other.codigo))
+		} else if (!idSubestacao.equals(other.idSubestacao))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 
 }
