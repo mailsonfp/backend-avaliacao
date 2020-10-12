@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.avaliacao.api.model.input.SubEstacaoModelInput;
 import com.avaliacao.api.model.output.SubEstacaoModelOutput;
+import com.avaliacao.domain.model.RedeMt;
 import com.avaliacao.domain.model.SubEstacao;
 
 @Component
@@ -32,6 +33,25 @@ public class SubEstacaoModelConverter {
 	 }
    
 	 public void copyToDomainObject(SubEstacaoModelInput subEstacaoInput, SubEstacao subEstacao) {
-		 modelMapper.map(subEstacaoInput, subEstacao);
+		 
+		 subEstacao.getRedesMt().forEach(redeMt ->{
+				redeMt.setSubEstacao(null);
+			});
+		
+		 subEstacao.setNome(subEstacaoInput.getNome());
+		 subEstacao.setLatitude(subEstacaoInput.getLatitude());
+		 subEstacao.setLongitude(subEstacaoInput.getLongitude());
+		 subEstacaoInput.getRedesMt().forEach(redeMt ->{
+			RedeMt rede = new RedeMt();
+			
+			rede.setCodigo(redeMt.getCodigo());
+			rede.setNome(redeMt.getNome());
+			rede.setTensao_nominal(redeMt.getTensao_nominal());
+			rede.setSubEstacao(subEstacao);
+			
+			subEstacao.getRedesMt().add(rede);
+		 });
+		 
+		 subEstacao.getRedesMt().removeIf(redemt -> redemt.getSubEstacao()==null);	 
 	 }
 }

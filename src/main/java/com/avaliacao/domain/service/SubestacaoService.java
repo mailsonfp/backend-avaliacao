@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.avaliacao.domain.exception.NegocioException;
 import com.avaliacao.domain.exception.SubEstacaoNaoEncontradaException;
@@ -29,6 +30,7 @@ public class SubEstacaoService {
 		return subestacaoRepository.findByCodigo(codigoSubEstacao).orElseThrow(() -> new SubEstacaoNaoEncontradaException(codigoSubEstacao));
 	}
 	
+	@Transactional
 	public SubEstacao salvar(SubEstacao subEstacao) {
 		Optional<SubEstacao> subExistente = subestacaoRepository.findByCodigo(subEstacao.getCodigo());
 		
@@ -40,11 +42,12 @@ public class SubEstacaoService {
 		}
 		
 		if(continua) {
-			if(subEstacao.getIdSubestacao()==null) {
-				subEstacao.getRedesMt().forEach(redeMt ->{
+			subEstacao.getRedesMt().forEach(redeMt ->{				
+				if(redeMt.getIdRedeMt()==null) {
 					redeMt.setSubEstacao(subEstacao);
-				});
-			}
+				}
+			 });
+		
 			SubEstacao sub = subestacaoRepository.save(subEstacao);
 			return sub;
 		} else {
@@ -52,6 +55,7 @@ public class SubEstacaoService {
 		}
 	}
 	
+	@Transactional
 	public void excluir(String codigoSubEstacao) {
 		SubEstacao subExcluir = buscarPorCodigo(codigoSubEstacao);
 		subestacaoRepository.delete(subExcluir);

@@ -28,7 +28,7 @@ public class SubEstacao {
 	
 	private BigDecimal longitude;
 	
-	@OneToMany(mappedBy = "subEstacao", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "subEstacao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<RedeMt> redesMt = new ArrayList<>();
 
 	public Integer getIdSubestacao() {
@@ -102,6 +102,12 @@ public class SubEstacao {
 		} else if (!idSubestacao.equals(other.idSubestacao))
 			return false;
 		return true;
-	}	
+	}
 
+	@Override
+	public String toString() {
+		return "SubEstacao [idSubestacao=" + idSubestacao + ", codigo=" + codigo + ", nome=" + nome + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", redesMt=" + redesMt + "]";
+	}
+	
 }
