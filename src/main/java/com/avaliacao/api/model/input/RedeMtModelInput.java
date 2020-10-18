@@ -40,5 +40,5 @@ public class RedeMtModelInput {
 	public void setTensao_nominal(BigDecimal tensao_nominal) {
 		this.tensao_nominal = tensao_nominal;
 	}
-	
+
 }

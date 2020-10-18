@@ -92,6 +92,12 @@ public class RedeMt {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "RedeMt [idRedeMt=" + idRedeMt + ", subEstacao=" + subEstacao + ", codigo=" + codigo + ", nome=" + nome
+				+ ", tensao_nominal=" + tensao_nominal + "]";
+	}
 	
 	
 }
