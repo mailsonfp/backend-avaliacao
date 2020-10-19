@@ -1,0 +1,23 @@
+{
+    "codigo": "TSX",
+    "nome": "Subestacao Teste",
+    "latitude": -25.0917377538890,
+    "longitude": -48.9241617522699,
+    "redesMt": [{
+            "codigo": "TSX01",
+            "nome": "Alimentador principal 1",
+            "tensao_nominal": 127
+        },
+        {
+            "codigo": "TSX02",
+            "nome": "Alimentador principal 2",
+            "tensao_nominal": 127
+        },
+        {
+            "codigo": "TSX03",
+            "nome": "Alimentador principal 3",
+            "tensao_nominal": 360
+        }
+        
+    ]
+}
