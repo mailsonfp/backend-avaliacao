@@ -15,7 +15,7 @@
 	<description>Avaliacao Sinapis</description>
 
 	<properties>
-		<java.version>14</java.version>
+		<java.version>15</java.version>
 		<modelmapper.version>2.3.0</modelmapper.version>
 	</properties>
 
